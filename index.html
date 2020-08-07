@@ -171,10 +171,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<h2 id="建图模板"><a href="#建图模板" class="headerlink" title="建图模板"></a>建图模板</h2><h3 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> Edge&#123;</div><div class="line">    <span class="keyword">int</span> next; <span class="comment">// 记录的是从上一个节点引出来的下一条边</span></div><div class="line">    <span class="keyword">int</span> to; <span class="comment">// 记录的是这条边的终点</span></div><div class="line">    <span class="keyword">int</span> dis; <span class="comment">// 记录边权</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">Edge edge[MAXN];<span class="comment">//存储边</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> edgenum=<span class="number">0</span>; <span class="comment">// 登记当前存储的是第几条边</span></div><div class="line"><span class="keyword">int</span> head[MAXN]; <span class="comment">// 登记从某点引出的其中一条边的编号</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddEdge</span><span class="params">(<span class="keyword">int</span> from,<span class="keyword">int</span> to,<span class="keyword">int</span> dis)</span></span>&#123;</div><div class="line">    <span class="comment">// 在AddEdge的过程中，edgenum实际上起到了给边编号的作用</span></div><div class="line">    <span class="comment">// 故这里边的编号是按照其加入图的顺序登记的</span></div><div class="line">    edge[++edgenum].next=head[from];<span class="comment">// 第edgenum条边是从点from引出来的</span></div><div class="line">    <span class="comment">// 第edgenum条边的next存储的是上一次存储的从from引出的边的编号</span></div><div class="line">    edge[edgenum].to=to;</div><div class="line">    <span class="comment">// 这条边的终点就是传进来的 to</span></div><div class="line">    edge[edgenum].dis=dis;</div><div class="line">    head[from]=edgenum;</div><div class="line">    <span class="comment">// 更新from引出来的边的编号为当前边的编号</span></div><div class="line">    <span class="comment">// 以此形成一个链表结构</span></div><div class="line">    <span class="comment">// 这样方便后续遍历由某一个点引出来的所有边</span></div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><h3 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<h2 id="最短路"><a href="#最短路" class="headerlink" title="最短路"></a>最短路</h2><h3 id="SPFA"><a href="#SPFA" class="headerlink" title="SPFA"></a>SPFA</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+        <p>图论学习</p>
+        
+          <!--<a class="article-more-a" href="/2020/08/06/图论学习综合笔记/#more">more >></a>
+        -->
       
 
       
@@ -259,7 +259,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <p>所有人都有两个选择，要么把自己的梦变成现实，要么，从梦中醒来面对现实。在“未来”到来之前，没人知道结局如何。因而人们对未来抱有不同的态度，但无论憧憬还是畏惧，未来总有一天会成为现在。既然线性的时间不允许我们停滞或是折返，那么与其被迫前进，不如笑着直面未来。</p>
         
+          <!--<a class="article-more-a" href="/2020/08/05/语文-我的未来不是梦/#more">more >></a>
+        -->
       
 
       
@@ -619,11 +622,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">感想</a>
+                <a href="javascript:void(0)" class="js-tag color3">图论</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图论</a>
+                <a href="javascript:void(0)" class="js-tag color3">感想</a>
               </li>
             
             <div class="clearfix"></div>
