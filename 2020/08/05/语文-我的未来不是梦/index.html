@@ -6,16 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://juruo233.github.io">
-  <title>markJuruo</title>
+  <title>[语文] 我的未来不是梦 | markJuruo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="我，蒟蒻">
-<meta property="og:type" content="website">
-<meta property="og:title" content="markJuruo">
-<meta property="og:url" content="http://juruo233.github.io/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[语文] 我的未来不是梦">
+<meta property="og:url" content="http://juruo233.github.io/2020/08/05/语文-我的未来不是梦/index.html">
 <meta property="og:site_name" content="markJuruo">
 <meta property="og:description" content="我，蒟蒻">
+<meta property="og:updated_time" content="2020-08-07T04:36:37.412Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="markJuruo">
+<meta name="twitter:title" content="[语文] 我的未来不是梦">
 <meta name="twitter:description" content="我，蒟蒻">
   
     <link rel="alternative" href="/atom.xml" title="markJuruo" type="application/atom+xml">
@@ -149,104 +150,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-图论学习综合笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-语文-我的未来不是梦" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/06/图论学习综合笔记/">图论学习综合笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/06/图论学习综合笔记/" class="archive-article-date">
-  	<time datetime="2020-08-06T12:24:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-<h2 id="建图模板"><a href="#建图模板" class="headerlink" title="建图模板"></a>建图模板</h2><h3 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> Edge&#123;</div><div class="line">    <span class="keyword">int</span> next; <span class="comment">// 记录的是从上一个节点引出来的下一条边</span></div><div class="line">    <span class="keyword">int</span> to; <span class="comment">// 记录的是这条边的终点</span></div><div class="line">    <span class="keyword">int</span> dis; <span class="comment">// 记录边权</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">Edge edge[MAXN];<span class="comment">//存储边</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> edgenum=<span class="number">0</span>; <span class="comment">// 登记当前存储的是第几条边</span></div><div class="line"><span class="keyword">int</span> head[MAXN]; <span class="comment">// 登记从某点引出的其中一条边的编号</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddEdge</span><span class="params">(<span class="keyword">int</span> from,<span class="keyword">int</span> to,<span class="keyword">int</span> dis)</span></span>&#123;</div><div class="line">    <span class="comment">// 在AddEdge的过程中，edgenum实际上起到了给边编号的作用</span></div><div class="line">    <span class="comment">// 故这里边的编号是按照其加入图的顺序登记的</span></div><div class="line">    edge[++edgenum].next=head[from];<span class="comment">// 第edgenum条边是从点from引出来的</span></div><div class="line">    <span class="comment">// 第edgenum条边的next存储的是上一次存储的从from引出的边的编号</span></div><div class="line">    edge[edgenum].to=to;</div><div class="line">    <span class="comment">// 这条边的终点就是传进来的 to</span></div><div class="line">    edge[edgenum].dis=dis;</div><div class="line">    head[from]=edgenum;</div><div class="line">    <span class="comment">// 更新from引出来的边的编号为当前边的编号</span></div><div class="line">    <span class="comment">// 以此形成一个链表结构</span></div><div class="line">    <span class="comment">// 这样方便后续遍历由某一个点引出来的所有边</span></div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><h3 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<h2 id="最短路"><a href="#最短路" class="headerlink" title="最短路"></a>最短路</h2><h3 id="SPFA"><a href="#SPFA" class="headerlink" title="SPFA"></a>SPFA</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">图论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<!--<i class="icon-book icon"></i>-->
-		<i class="fa fa-book icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="/categories/OI学习//" class="article-tag-list-link color5">OI学习</a>
-        		</li>
-      		
-        		<li class="article-tag-list-item">
-        			<a href="/categories/OI学习/笔记//" class="article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-语文-我的未来不是梦" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/语文-我的未来不是梦/">[语文] 我的未来不是梦</a>
+    <h1 class="article-title" itemprop="name">
+      [语文] 我的未来不是梦
     </h1>
   
 
@@ -299,10 +210,82 @@
       
 
       
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://juruo233.github.io/2020/08/05/语文-我的未来不是梦/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/08/06/图论学习综合笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          图论学习综合笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/05/扎根于土地的信仰/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[语文] 扎根于土地的信仰</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -322,185 +305,14 @@
 
 
 
-
-  
-    <article id="post-扎根于土地的信仰" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/扎根于土地的信仰/">[语文] 扎根于土地的信仰</a>
-    </h1>
   
 
-        
-        <a href="/2020/08/05/扎根于土地的信仰/" class="archive-article-date">
-  	<time datetime="2020-08-05T10:21:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>《乡土中国》读后感</strong></p>
-<p>中国的农耕文明发展了千年之久，似乎一切都源于土地，一切都与土地有着千丝万缕的关系。土地的分配决策促成了早期的政治和制度，农作物栽培经验的积累和实践促成了早期的习俗，先人对聚居地的依恋和坚守形成了世世代代生活于黄土地上的人们内心最初的信仰。而扎根并生长在土地中的乡土社会，则更是土地所孕育出的一种重要的社会类型，乡下人这一群体，至今也是组成当代中国多元社会的重要角色之一。</p>
-        
-          <!--<a class="article-more-a" href="/2020/08/05/扎根于土地的信仰/#more">more >></a>
-        -->
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">感想</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<!--<i class="icon-book icon"></i>-->
-		<i class="fa fa-book icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业//" class="article-tag-list-link color5">校内作业</a>
-        		</li>
-      		
-        		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业/语文//" class="article-tag-list-link color3">语文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-政治论文-政治与个体的关系" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/政治论文-政治与个体的关系/">[政治] 政治与个体的关系</a>
-    </h1>
   
 
-        
-        <a href="/2020/08/05/政治论文-政治与个体的关系/" class="archive-article-date">
-  	<time datetime="2020-08-05T10:12:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>“人天生就是政治的动物”，这是大哲学家亚里士多德的名言。可是平时我们往往是以旁观者的身份讨论政治事件。政治似乎仅仅是政治家的事情，与我们的日常生活并无多大关联。然而政治并非悬于空中。我们每个人都是一个个体，个体看似与政治无关，但正如一个细胞与整个生物体之间的关系一样，细胞的种种活动都会受到整体的调控、影响、限制，个体也会受到政治的影响，相反的，个体的行为如若引发了一定共鸣，形成群体的行为，那也会对政治造成一定的影响。</p>
-        
-          <!--<a class="article-more-a" href="/2020/08/05/政治论文-政治与个体的关系/#more">more >></a>
-        -->
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">感想</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<!--<i class="icon-book icon"></i>-->
-		<i class="fa fa-book icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业//" class="article-tag-list-link color5">校内作业</a>
-        		</li>
-      		
-        		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业/政治//" class="article-tag-list-link color3">政治</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
+  
 
   
+
   
 
 
@@ -523,8 +335,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
