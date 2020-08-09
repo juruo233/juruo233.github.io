@@ -158,6 +158,116 @@
       
       <section class="archives-wrap">
         <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/02/02/旧事记-我玩过的游戏/" class="archive-article-date">
+  	<time datetime="2019-02-02T00:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-02</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/02/02/旧事记-我玩过的游戏/">旧事记 那些我玩过的游戏 2.2-2.3</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="fa fa-bookmark icon"></i>
+		<ul class="article-tag-list">
+			
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">旧事记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+	<div class="article-category tagcloud">
+		<!--<i class="icon-book icon"></i>-->
+		<i class="fa fa-book icon"></i>
+		<ul class="article-tag-list">
+			
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/01/24/旧事记-初二上/" class="archive-article-date">
+  	<time datetime="2019-01-24T00:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-24</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/01/24/旧事记-初二上/">旧事记 初二上 1.21-1.24</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="fa fa-bookmark icon"></i>
+		<ul class="article-tag-list">
+			
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">旧事记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+	<div class="article-category tagcloud">
+		<!--<i class="icon-book icon"></i>-->
+		<i class="fa fa-book icon"></i>
+		<ul class="article-tag-list">
+			
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+      
+        </div></section>
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
           <a href="/archives/2018" class="archive-year">2018</a>
         </div>
         <div class="archives">
@@ -224,11 +334,37 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 markJuruo
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+			&copy; 2018 - 2020 markJuruo
+			| 这个蒟蒻一共写了 <span class="post-count">13.2k</span> 字，你数一数对不对 |
+			<span id="sitetime"></span>
+				<script language=javascript>
+					function siteTime(){
+						window.setTimeout("siteTime()", 1000);
+						var seconds = 1000;
+						var minutes = seconds * 60;
+						var hours = minutes * 60;
+						var days = hours * 24;
+						var years = days * 365;
+						var today = new Date();
+						var todayYear = today.getFullYear();
+						var todayMonth = today.getMonth()+1;
+						var todayDate = today.getDate();
+						var todayHour = today.getHours();
+						var todayMinute = today.getMinutes();
+						var todaySecond = today.getSeconds();
+						var t1 = Date.UTC(2018,05,18,15,00,00);
+						var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+						var diff = t2-t1;
+						var diffYears = Math.floor(diff/years);
+						var diffDays = Math.floor((diff/days)-diffYears*365);
+						var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+						var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+						var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+						document.getElementById("sitetime").innerHTML="这小破站已近有 "+diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒 的历史了";
+					}
+					siteTime();
+				</script>
+		</div>
     </div>
   </div>
 </footer>
@@ -332,6 +468,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">感想</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日志</a>
               </li>
              
@@ -344,23 +484,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">论文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">图论</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">感想</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">小记</a>
+                <a href="javascript:void(0)" class="js-tag color3">论文</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">中二</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">小记</a>
               </li>
             
             <div class="clearfix"></div>
