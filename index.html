@@ -62,6 +62,8 @@
 	        
 				<li><a href="/about">关于</a></li>
 	        
+				<li><a href="/study">学习</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -116,6 +118,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -129,12 +133,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/about">关于</a></li>
+					<li style="width: 33.333333333333336%"><a href="/about">关于</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/study">学习</a></li>
 		        
 				</ul>
 			</nav>
@@ -151,6 +157,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-oirethink" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/OI学习/笔记/oirethink/">思路整理</a>
+    </h1>
+  
+
+        
+        <a href="/OI学习/笔记/oirethink/" class="archive-article-date">
+  	<time datetime="2020-08-09T06:33:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-09</time>
+</a>
+        
+          <div style="margin-top:10px;color: #999;font-size: 17px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        <span class="post-meta-item-text">  本文一共</span>
+        <span class="post-count">816字，你数一下对不对</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading…</span></p>
+<h1 id="动态规划专题"><a href="#动态规划专题" class="headerlink" title="动态规划专题"></a>动态规划专题</h1><h2 id="最长公共子序列和它的朋友"><a href="#最长公共子序列和它的朋友" class="headerlink" title="最长公共子序列和它的朋友"></a>最长公共子序列和它的朋友</h2><p>最初的问题：假设有A，B两个字符串，求它们的最长公共子序列</p>
+<p>假设 $f_{i,j}$ 表示 $A$ 串前 $i$ 个字符与 $B$ 串前 $j$ 个字符所拥有的的最长公共子序列（LCS）的长度</p>
+<p>$f_{i,j}=<br>\begin{cases}<br>max\{f_{i-1,j},f_{i,j-1}\} &amp; {A_i \neq B_j} \\<br>f_{i-1,j-1}+1 &amp; {A_i = B_j}<br>\end{cases}$</p>
+<p>如果当前比较的 $A_i$ $B_j$ 这两个字符不相同，<br>那么即使少掉 $A_i$ 或者 $B_j$ 这两位，也不会影响 $A$ 的前 $i$ 位与 $B$ 的前 $j$ 位的 LCS 长度，故可以得到大括号上方的式子；<br>反之，如果相同，则 $A$ 的前 $i$ 位与 $B$ 的前 $j$ 位的 LCS 长度刚好是 $A$ $B$ 两字符串分别去掉 $A_i$ 和 $B_i$ 这两位后的两个字符串的 LCS 长度加一。</p>
+<p>为什么这么想？因为动态规划的很重要的一点就是找出<strong>当前状态与前一步状态之间的联系</strong>。</p>
+<h3 id="拓展-输出最优方案？"><a href="#拓展-输出最优方案？" class="headerlink" title="拓展 输出最优方案？"></a>拓展 输出最优方案？</h3><p>在动态规划中，输出方案事实上有两种思路（来自于<a href="https://zhuanlan.zhihu.com/p/139368825" target="_blank" rel="external">背包九讲</a>）</p>
+<p>第一种：开一个数组如 $g_{i,j}$，记录在每个状态做出的决定。即记录当前状态是从哪一种状态中转移过来的，那么输出方案就可以：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">i=N</div><div class="line">v=V</div><div class="line"><span class="keyword">while</span>(i&gt;<span class="number">0</span>)</div><div class="line">    <span class="keyword">if</span>(g[i][v]==<span class="number">0</span>)</div><div class="line">        print <span class="string">"未选第i项物品"</span></div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(g[i][v]==<span class="number">1</span>)</div><div class="line">        print <span class="string">"选了第i项物品"</span></div><div class="line">        v=v-c[i]</div></pre></td></tr></table></figure></p>
+<p>第二种：</p>
+<blockquote>
+<p>另外，采用方程的前一项或后一项也可以在输出方案的过程中根据 $f_{i,v}$ 的值实时地求出来，也即不须纪录 $g$ 数组，将上述代码中的 <code>g[i][v]==0</code> 改成 <code>f[i][v]==f[i-1][v]</code> ， <code>g[i][v]==1</code> 改成 <code>f[i][v]==f[i-1][v-c[i]]+w[i]</code> 也可。</p>
+</blockquote>
+<p>以上是针对背包问题的解决办法，现在对它进行迁移。</p>
+<p>见代码</p>
+<p>用第一种方案：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 状态转移过程中的操作</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=lena;i++)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=lenb;j++)&#123;</div><div class="line">            <span class="keyword">if</span>(f[i<span class="number">-1</span>][j]&gt;f[i][j<span class="number">-1</span>])&#123;</div><div class="line">                g[i][j]=<span class="number">1</span>;</div><div class="line">                f[i][j]=f[i<span class="number">-1</span>][j];</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                g[i][j]=<span class="number">2</span>;</div><div class="line">                f[i][j]=f[i][j<span class="number">-1</span>];</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(a[i]==b[j])&#123;</div><div class="line">                g[i][j]=<span class="number">3</span>;</div><div class="line">                f[i][j]=f[i<span class="number">-1</span>][j<span class="number">-1</span>]+<span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="comment">// 输出过程</span></div><div class="line"><span class="keyword">int</span> i=lena,j=lenb,flag=<span class="number">0</span>;</div><div class="line"><span class="keyword">while</span>(i&gt;<span class="number">0</span> &amp;&amp; j&gt;<span class="number">0</span>)&#123;</div><div class="line">    <span class="keyword">if</span>(g[i][j]==<span class="number">3</span>)&#123;</div><div class="line">        LCS[++flag]=a[i];</div><div class="line">        i--;</div><div class="line">        j--;</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(g[i][j]==<span class="number">2</span>)&#123;</div><div class="line">        j--;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        i--;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 要注意因为存储方案是倒退动态规划每一步选择的状态的</span></div><div class="line"><span class="comment">// 因此存进LCS数组的字符是倒序的</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=flag;i&gt;=<span class="number">1</span>;i--)&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%c"</span>,LCS[i]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第二种：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 每一步都直接逆推</span></div><div class="line"><span class="keyword">while</span>(i&gt;=<span class="number">0</span> &amp;&amp; j&gt;=<span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">if</span>(f[i][j]==f[i<span class="number">-1</span>][j])&#123;</div><div class="line">            i--;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(f[i][j]==f[i][j<span class="number">-1</span>])&#123;</div><div class="line">            j--;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            LCS[++flag]=a[i];</div><div class="line">            i--;</div><div class="line">            j--;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="最长回文子序列"><a href="#最长回文子序列" class="headerlink" title="最长回文子序列"></a>最长回文子序列</h3><p>求一个字符串 $A$ 的最长回文子序列？</p>
+<p>不细写了，思路很清晰了：</p>
+<p>将 $A$ 倒序存储到数组 $B$ 中<br>然后求 $A$ 和 $B$ 的最长公共子序列即可。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<!--<i class="icon-book icon"></i>-->
+		<i class="fa fa-book icon"></i>
+		<ul class="article-tag-list">
+			
+        		<li class="article-tag-list-item">
+        			<a href="/categories/OI学习//" class="article-tag-list-link color5">OI学习</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/OI学习/笔记//" class="article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-地理-地理是什么？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -158,12 +269,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/08/地理-地理是什么？/">地理-我心中的地理</a>
+      <a class="article-title" href="/作业/地理-地理是什么？/">我心中的地理</a>
     </h1>
   
 
         
-        <a href="/2020/08/08/地理-地理是什么？/" class="archive-article-date">
+        <a href="/作业/地理-地理是什么？/" class="archive-article-date">
   	<time datetime="2020-08-08T12:55:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-08</time>
 </a>
         
@@ -191,17 +302,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -209,11 +309,7 @@
 		<ul class="article-tag-list">
 			
         		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业//" class="article-tag-list-link color5">校内作业</a>
-        		</li>
-      		
-        		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业/地理//" class="article-tag-list-link color3">地理</a>
+        			<a href="/categories/作业//" class="article-tag-list-link color3">作业</a>
         		</li>
       		
 		</ul>
@@ -255,12 +351,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/06/图论学习综合笔记/">图论学习综合笔记</a>
+      <a class="article-title" href="/OI学习/笔记/图论学习综合笔记/">图论学习综合笔记</a>
     </h1>
   
 
         
-        <a href="/2020/08/06/图论学习综合笔记/" class="archive-article-date">
+        <a href="/OI学习/笔记/图论学习综合笔记/" class="archive-article-date">
   	<time datetime="2020-08-06T12:24:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-06</time>
 </a>
         
@@ -281,7 +377,7 @@
       
         <p>图论学习</p>
         
-          <!--<a class="article-more-a" href="/2020/08/06/图论学习综合笔记/#more">more >></a>
+          <!--<a class="article-more-a" href="/OI学习/笔记/图论学习综合笔记/#more">more >></a>
         -->
       
 
@@ -354,12 +450,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/语文-我的未来不是梦/">[语文] 我的未来不是梦</a>
+      <a class="article-title" href="/随笔/感想/语文-我的未来不是梦/">我的未来不是梦</a>
     </h1>
   
 
         
-        <a href="/2020/08/05/语文-我的未来不是梦/" class="archive-article-date">
+        <a href="/随笔/感想/语文-我的未来不是梦/" class="archive-article-date">
   	<time datetime="2020-08-05T12:40:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
 </a>
         
@@ -380,7 +476,7 @@
       
         <p><i class="fa fa-quote-left fa-3x fa-pull-left fa-border" aria-hidden="true"></i>所有人都有两个选择，要么把自己的梦变成现实，要么，从梦中醒来面对现实。在“未来”到来之前，没人知道结局如何。因而人们对未来抱有不同的态度，但无论憧憬还是畏惧，未来总有一天会成为现在。既然线性的时间不允许我们停滞或是折返，那么与其眷恋过去、停滞原地，不如把握现在、直面未来。</p>
         
-          <!--<a class="article-more-a" href="/2020/08/05/语文-我的未来不是梦/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/感想/语文-我的未来不是梦/#more">more >></a>
         -->
       
 
@@ -407,11 +503,11 @@
 		<ul class="article-tag-list">
 			
         		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业//" class="article-tag-list-link color5">校内作业</a>
+        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
         		</li>
       		
         		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业/语文//" class="article-tag-list-link color3">语文</a>
+        			<a href="/categories/随笔/感想//" class="article-tag-list-link color3">感想</a>
         		</li>
       		
 		</ul>
@@ -453,12 +549,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/扎根于土地的信仰/">[语文] 扎根于土地的信仰</a>
+      <a class="article-title" href="/作业/扎根于土地的信仰/">扎根于土地的信仰</a>
     </h1>
   
 
         
-        <a href="/2020/08/05/扎根于土地的信仰/" class="archive-article-date">
+        <a href="/作业/扎根于土地的信仰/" class="archive-article-date">
   	<time datetime="2020-08-05T10:21:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
 </a>
         
@@ -480,7 +576,7 @@
         <p><strong>《乡土中国》读后感</strong></p>
 <p>中国的农耕文明发展了千年之久，似乎一切都源于土地，一切都与土地有着千丝万缕的关系。土地的分配决策促成了早期的政治和制度，农作物栽培经验的积累和实践促成了早期的习俗，先人对聚居地的依恋和坚守形成了世世代代生活于黄土地上的人们内心最初的信仰。而扎根并生长在土地中的乡土社会，则更是土地所孕育出的一种重要的社会类型，乡下人这一群体，至今也是组成当代中国多元社会的重要角色之一。</p>
         
-          <!--<a class="article-more-a" href="/2020/08/05/扎根于土地的信仰/#more">more >></a>
+          <!--<a class="article-more-a" href="/作业/扎根于土地的信仰/#more">more >></a>
         -->
       
 
@@ -489,17 +585,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">感想</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -507,11 +592,7 @@
 		<ul class="article-tag-list">
 			
         		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业//" class="article-tag-list-link color5">校内作业</a>
-        		</li>
-      		
-        		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业/语文//" class="article-tag-list-link color3">语文</a>
+        			<a href="/categories/作业//" class="article-tag-list-link color3">作业</a>
         		</li>
       		
 		</ul>
@@ -553,12 +634,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/政治论文-政治与个体的关系/">[政治] 政治与个体的关系</a>
+      <a class="article-title" href="/作业/政治论文-政治与个体的关系/">政治与个体的关系</a>
     </h1>
   
 
         
-        <a href="/2020/08/05/政治论文-政治与个体的关系/" class="archive-article-date">
+        <a href="/作业/政治论文-政治与个体的关系/" class="archive-article-date">
   	<time datetime="2020-08-05T10:12:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
 </a>
         
@@ -579,7 +660,7 @@
       
         <p><i class="fa fa-quote-left fa-3x fa-pull-left fa-border" aria-hidden="true"></i>“人天生就是政治的动物”，这是大哲学家亚里士多德的名言。可是平时我们往往是以旁观者的身份讨论政治事件。政治似乎仅仅是政治家的事情，与我们的日常生活并无多大关联。然而政治并非悬于空中。我们每个人都是一个个体，个体看似与政治无关，但正如一个细胞与整个生物体之间的关系一样，细胞的种种活动都会受到整体的调控、影响、限制，个体也会受到政治的影响，相反的，个体的行为如若引发了一定共鸣，形成群体的行为，那也会对政治造成一定的影响。</p>
         
-          <!--<a class="article-more-a" href="/2020/08/05/政治论文-政治与个体的关系/#more">more >></a>
+          <!--<a class="article-more-a" href="/作业/政治论文-政治与个体的关系/#more">more >></a>
         -->
       
 
@@ -588,17 +669,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">感想</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -606,11 +676,7 @@
 		<ul class="article-tag-list">
 			
         		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业//" class="article-tag-list-link color5">校内作业</a>
-        		</li>
-      		
-        		<li class="article-tag-list-item">
-        			<a href="/categories/校内作业/政治//" class="article-tag-list-link color3">政治</a>
+        			<a href="/categories/作业//" class="article-tag-list-link color3">作业</a>
         		</li>
       		
 		</ul>
@@ -652,12 +718,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/26/体育课日志-鸭子步之青蛙跳/">体育课日志 鸭子步之青蛙跳 4.19-4.25</a>
+      <a class="article-title" href="/随笔/日志/体育课日志-鸭子步之青蛙跳/">体育课日志 鸭子步之青蛙跳 4.19-4.25</a>
     </h1>
   
 
         
-        <a href="/2019/04/26/体育课日志-鸭子步之青蛙跳/" class="archive-article-date">
+        <a href="/随笔/日志/体育课日志-鸭子步之青蛙跳/" class="archive-article-date">
   	<time datetime="2019-04-26T00:42:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-26</time>
 </a>
         
@@ -681,7 +747,7 @@
 </blockquote>
 <p>初二下。<br>终于，我们离体育中考又近了一个学期。<br>可爱的唐老师不染发了，显得和蔼了许多，但是下手的力度却大了不少。<br>计时 1000 米，养生 8 圈跑之类的惯用套路对我们来说已经不痛不痒了。贴心唐老师于是尽可能的找些新菜品招待我们。<br>我记得上个学期玩得最多的是俯卧撑，这个学期改成了鸭子步+青蛙跳的套餐。<br>于是又是一轮新式的侦察者与偷懒者之间的较量。</p>
         
-          <!--<a class="article-more-a" href="/2019/04/26/体育课日志-鸭子步之青蛙跳/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/日志/体育课日志-鸭子步之青蛙跳/#more">more >></a>
         -->
       
 
@@ -690,17 +756,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -709,6 +764,10 @@
 			
         		<li class="article-tag-list-item">
         			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔/日志//" class="article-tag-list-link color3">日志</a>
         		</li>
       		
 		</ul>
@@ -750,12 +809,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/04/从地平说到唯我主义/">从地平说到“唯我”主义 2.4</a>
+      <a class="article-title" href="/随笔/感想/从地平说到唯我主义/">从地平说到“唯我”主义 2.4</a>
     </h1>
   
 
         
-        <a href="/2019/02/04/从地平说到唯我主义/" class="archive-article-date">
+        <a href="/随笔/感想/从地平说到唯我主义/" class="archive-article-date">
   	<time datetime="2019-02-04T00:42:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-04</time>
 </a>
         
@@ -779,7 +838,7 @@
 </blockquote>
 <p>我今天看到了有关“地平说”的内容。<br>这个学说内容很简单:地“球”是平的，宇宙是不存在的，政府和 NASA 一起骗了全人类。<br>我只好说，我这种很容易被社会舆论牵着鼻子走的孩子在看了他们详细的解释和证明后马上就沉迷于此。<br>事实上我在看了 YouTube 上论证之后的一小段时间里真的相信了这个被称作阴谋论的学说。</p>
         
-          <!--<a class="article-more-a" href="/2019/02/04/从地平说到唯我主义/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/感想/从地平说到唯我主义/#more">more >></a>
         -->
       
 
@@ -788,17 +847,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">感想</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -807,6 +855,10 @@
 			
         		<li class="article-tag-list-item">
         			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔/感想//" class="article-tag-list-link color3">感想</a>
         		</li>
       		
 		</ul>
@@ -848,12 +900,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/02/旧事记-我玩过的游戏/">旧事记 那些我玩过的游戏 2.2-2.3</a>
+      <a class="article-title" href="/随笔/旧事记/旧事记-我玩过的游戏/">旧事记 那些我玩过的游戏 2.2-2.3</a>
     </h1>
   
 
         
-        <a href="/2019/02/02/旧事记-我玩过的游戏/" class="archive-article-date">
+        <a href="/随笔/旧事记/旧事记-我玩过的游戏/" class="archive-article-date">
   	<time datetime="2019-02-02T00:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-02</time>
 </a>
         
@@ -877,7 +929,7 @@
 </blockquote>
 <h2 id="2010"><a href="#2010" class="headerlink" title="2010"></a>2010</h2><p>我大概是幼儿园时第一次接触了电子游戏。<br>那时候没有什么手机、电脑的。<br>我和我三个表哥不知道哪里搞来的游戏卡，插在游戏机里面，然后连上家里的一台旧电视。<br>像素不高，控制游戏的摇杆也算不上灵敏，但我们玩得开心。<br>那时候我们就玩《魂斗罗》，两个人一起，我们轮着来。<br>那时候我们玩并不为了从游戏里找乐子，就是四个人在一起，舒服。</p>
         
-          <!--<a class="article-more-a" href="/2019/02/02/旧事记-我玩过的游戏/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/旧事记/旧事记-我玩过的游戏/#more">more >></a>
         -->
       
 
@@ -886,17 +938,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">旧事记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -905,6 +946,10 @@
 			
         		<li class="article-tag-list-item">
         			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔/旧事记//" class="article-tag-list-link color4">旧事记</a>
         		</li>
       		
 		</ul>
@@ -946,12 +991,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/24/旧事记-初二上/">旧事记 初二上 1.21-1.24</a>
+      <a class="article-title" href="/随笔/旧事记/旧事记-初二上/">旧事记 初二上 1.21-1.24</a>
     </h1>
   
 
         
-        <a href="/2019/01/24/旧事记-初二上/" class="archive-article-date">
+        <a href="/随笔/旧事记/旧事记-初二上/" class="archive-article-date">
   	<time datetime="2019-01-24T00:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-24</time>
 </a>
         
@@ -975,7 +1020,7 @@
 </blockquote>
 <p>我不知道要从哪一次失败开始写起。<br>怕是太多罢了。<br>我大概是从进初中开始才发觉了生活没有我想象的这么轻松。<br>我是到了现在才知道成功这条路根本没有这么好走。<br>我似乎是失去了很多，但我却常常不合时宜地感到知足，<br>我似乎是习惯了，习惯了耀眼的是别人，灰暗的是自己。<br>我的确感到痛苦，<br>但是痛苦过后，又会把伤口掩盖起来，<br>我把它藏起来，好像这样它就不会对我造成伤害，<br>“我他妈的，再也受不了了啊。”</p>
         
-          <!--<a class="article-more-a" href="/2019/01/24/旧事记-初二上/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/旧事记/旧事记-初二上/#more">more >></a>
         -->
       
 
@@ -984,17 +1029,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">旧事记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -1003,6 +1037,10 @@
 			
         		<li class="article-tag-list-item">
         			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔/旧事记//" class="article-tag-list-link color4">旧事记</a>
         		</li>
       		
 		</ul>
@@ -1044,12 +1082,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/21/咸鱼/">旧事记 咸鱼 11.12-11.21</a>
+      <a class="article-title" href="/随笔/旧事记/咸鱼/">旧事记 咸鱼 11.12-11.21</a>
     </h1>
   
 
         
-        <a href="/2018/11/21/咸鱼/" class="archive-article-date">
+        <a href="/随笔/旧事记/咸鱼/" class="archive-article-date">
   	<time datetime="2018-11-21T00:13:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
 </a>
         
@@ -1070,7 +1108,7 @@
       
         <p>期中考试结束了。我的成绩并不算拔尖，但我看到兴奋得哭了出来。<br>这不是我今年第一次哭了。<br>我总感觉自己受的委屈太多了。我是一名信息竞赛选手，却连 NOIP 的初赛都没考进过。我那么多次豪言壮志，文化课要考个好成绩出来，却总是一次又一次的让人失望。我怀疑自己，早已没有自信的资本的我准备开始堕落了。<br>我还没尝过胜利的滋味啊。<br>“我他妈的再也受不了了。”</p>
         
-          <!--<a class="article-more-a" href="/2018/11/21/咸鱼/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/旧事记/咸鱼/#more">more >></a>
         -->
       
 
@@ -1079,17 +1117,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">旧事记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -1098,6 +1125,10 @@
 			
         		<li class="article-tag-list-item">
         			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔/旧事记//" class="article-tag-list-link color4">旧事记</a>
         		</li>
       		
 		</ul>
@@ -1139,12 +1170,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/02/秋-小记/">秋 小记 11.2</a>
+      <a class="article-title" href="/随笔/小记/秋-小记/">秋 小记 11.2</a>
     </h1>
   
 
         
-        <a href="/2018/11/02/秋-小记/" class="archive-article-date">
+        <a href="/随笔/小记/秋-小记/" class="archive-article-date">
   	<time datetime="2018-11-02T00:10:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-02</time>
 </a>
         
@@ -1165,7 +1196,7 @@
       
         <p>以前我不是很喜欢秋天——<br>谁让它总是略显单调。<br>春天的万物复苏，<br>夏天的生机勃勃，<br>冬天的宁静优雅，<br>总是让人难以忘却。<br>但是可怜的秋天，我却总是想不出什么优秀的词来形容它的美。<br>似乎它有的，仅仅是凄凉的冷风和枯败的落叶。</p>
         
-          <!--<a class="article-more-a" href="/2018/11/02/秋-小记/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/小记/秋-小记/#more">more >></a>
         -->
       
 
@@ -1174,17 +1205,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">小记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -1193,6 +1213,10 @@
 			
         		<li class="article-tag-list-item">
         			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔/小记//" class="article-tag-list-link color3">小记</a>
         		</li>
       		
 		</ul>
@@ -1234,12 +1258,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/24/体育课日志-妈耶3000米/">体育课日志 妈耶3000米 10.16-10.22</a>
+      <a class="article-title" href="/随笔/日志/体育课日志-妈耶3000米/">体育课日志 妈耶3000米 10.16-10.22</a>
     </h1>
   
 
         
-        <a href="/2018/10/24/体育课日志-妈耶3000米/" class="archive-article-date">
+        <a href="/随笔/日志/体育课日志-妈耶3000米/" class="archive-article-date">
   	<time datetime="2018-10-23T23:59:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-24</time>
 </a>
         
@@ -1260,7 +1284,7 @@
       
         <p>今年升入初二的我们，最初还沾沾自喜着，在这学校里的辈分总算不是垫底了。可惜好日子不长，我们在小初一的面前光彩了几天，舒服日子没过够就开始发虚了。<br>体育组的老师带来了扫兴的消息。似乎是区里即将对全体初二同学的体育锻炼质量进行抽测调查。因为老师们不知道究竟会抽到哪个班，于是之后对全体初二同学实施统一策略。<br>好日子彻底结束了，每天大课间跑步从750米加到1000米，可是给的还是750米的时间。<br>更让人全身发虚的是体育课。<br>帅气的老唐得知了这个消息，高兴坏了：<br>总算找到个理由折磨折磨我们了。<br>这之后的第一节体育课，我们照常很懒散地集队。<br>可我忽然发现唐老师的神色似乎不是很友好啊。</p>
         
-          <!--<a class="article-more-a" href="/2018/10/24/体育课日志-妈耶3000米/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/日志/体育课日志-妈耶3000米/#more">more >></a>
         -->
       
 
@@ -1269,17 +1293,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -1288,6 +1301,10 @@
 			
         		<li class="article-tag-list-item">
         			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔/日志//" class="article-tag-list-link color3">日志</a>
         		</li>
       		
 		</ul>
@@ -1329,12 +1346,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/14/NOIP2018游记/">NOIP2018游记</a>
+      <a class="article-title" href="/随笔/游记/NOIP2018游记/">NOIP2018游记</a>
     </h1>
   
 
         
-        <a href="/2018/10/14/NOIP2018游记/" class="archive-article-date">
+        <a href="/随笔/游记/NOIP2018游记/" class="archive-article-date">
   	<time datetime="2018-10-13T23:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-14</time>
 </a>
         
@@ -1355,7 +1372,7 @@
       
         <p>从初一我入坑开始，我便经常幻想着有一天能够在这信竞道路上发光发亮。事实证明，我想得真美。<br>我不是一个很实在的人，但是总是很努力地“表现地很努力”。<br>终于，在我最热爱的道路上栽了大跟头。<br>这不是什么值得宣扬的事迹。我也为此痛哭。<br>记录以铭。</p>
         
-          <!--<a class="article-more-a" href="/2018/10/14/NOIP2018游记/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/游记/NOIP2018游记/#more">more >></a>
         -->
       
 
@@ -1364,17 +1381,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">游记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -1383,6 +1389,10 @@
 			
         		<li class="article-tag-list-item">
         			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔/游记//" class="article-tag-list-link color3">游记</a>
         		</li>
       		
 		</ul>
@@ -1424,12 +1434,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/23/体育课日志-大雨/">体育课日志 大雨，大雨 9.20</a>
+      <a class="article-title" href="/随笔/日志/体育课日志-大雨/">体育课日志 大雨，大雨 9.20</a>
     </h1>
   
 
         
-        <a href="/2018/09/23/体育课日志-大雨/" class="archive-article-date">
+        <a href="/随笔/日志/体育课日志-大雨/" class="archive-article-date">
   	<time datetime="2018-09-22T23:50:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-23</time>
 </a>
         
@@ -1450,7 +1460,7 @@
       
         <p>这样闷热的日子已经持续好几天了。我们没什么身体上的不爽，但就是不过瘾。已经入了秋，总得抓住夏天的尾巴，好好的下一场痛快的大雨。<br>南方的天气，果真羞涩，总像是藏着掖着，让人难受。或者说，我不大习惯这种扭捏的风态。至少，在活泼的夏天里，这种态度实在不是很友好。<br>每一节体育课，我们都盼着跑完这一圈就忽然乌云密布，然后“哗”的把腹中的雨水全都倾盆而下。可是每次都是失望，伴着抱怨，躲在树荫下，看着天边几小的可笑的卷云飘啊飘啊。。。<br>然后，它就下了。<br>毫无预备的下了。彻彻底底的下了。不可收拾的下了。<br>像一个肾结石的病人做完手术从病房出来，撒的第一泡尿一样，，痛快。<br>我们吓傻了，然后欢呼，然后假装一脸正经的，奔跑起来。<br>把体育老师抛在了一边。<br>一哄而散。</p>
         
-          <!--<a class="article-more-a" href="/2018/09/23/体育课日志-大雨/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/日志/体育课日志-大雨/#more">more >></a>
         -->
       
 
@@ -1463,10 +1473,6 @@
 		<i class="fa fa-bookmark icon"></i>
 		<ul class="article-tag-list">
 			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
-        		</li>
-      		
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">雨天の美好</a>
         		</li>
@@ -1482,6 +1488,10 @@
 			
         		<li class="article-tag-list-item">
         			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔/日志//" class="article-tag-list-link color3">日志</a>
         		</li>
       		
 		</ul>
@@ -1523,12 +1533,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/20/体育课日志-摔了个大跤/">体育课日志 摔了个大跤 9.4-9.19</a>
+      <a class="article-title" href="/随笔/日志/体育课日志-摔了个大跤/">体育课日志 摔了个大跤 9.4-9.19</a>
     </h1>
   
 
         
-        <a href="/2018/09/20/体育课日志-摔了个大跤/" class="archive-article-date">
+        <a href="/随笔/日志/体育课日志-摔了个大跤/" class="archive-article-date">
   	<time datetime="2018-09-19T23:49:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-20</time>
 </a>
         
@@ -1549,7 +1559,7 @@
       
         <p>2018年的九月份里的一天，本该是开学初美好的日子。<br>这天体育课上来了一位新的体育老师，我远瞅他一脸黑线，心里忽然有点失望，初一时那个乐呵呵的老楼不教我们班了，换了一个外表目前看来不大友好的老师。<br>那位老师走近了，我才发现他似乎有点帅。头发染了一点淡淡的紫色，戴着方框细边的眼镜，不大的眼睛上是模糊的双眼皮。棱角分明的下巴，还有一点凌乱的胡髭，散发着男人的气息。<br>“上课铃响了没！？”他冲着散漫的学生们吼道。声音也那么富有磁性。我想着，急忙跑来立定。<br>“三班的学生，我带了一年了”他顿了顿，“四班的新同学们，这个学期也由我来教。我姓唐，就叫我唐老师。”话音刚落，我们就用力鼓掌，“唐老师好！”“唐老师辛苦了！”……</p>
         
-          <!--<a class="article-more-a" href="/2018/09/20/体育课日志-摔了个大跤/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/日志/体育课日志-摔了个大跤/#more">more >></a>
         -->
       
 
@@ -1558,17 +1568,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -1577,6 +1576,10 @@
 			
         		<li class="article-tag-list-item">
         			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔/日志//" class="article-tag-list-link color3">日志</a>
         		</li>
       		
 		</ul>
@@ -1618,12 +1621,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/26/云栖大会游记/">2050@2018云栖大会游记</a>
+      <a class="article-title" href="/随笔/游记/云栖大会游记/">2050@2018云栖大会游记</a>
     </h1>
   
 
         
-        <a href="/2018/05/26/云栖大会游记/" class="archive-article-date">
+        <a href="/随笔/游记/云栖大会游记/" class="archive-article-date">
   	<time datetime="2018-05-25T23:40:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
 </a>
         
@@ -1644,7 +1647,7 @@
       
         <h2 id="启程"><a href="#启程" class="headerlink" title="启程"></a>启程</h2><p>2050-ACMer Reunion复播<br>2018年5月25日周五12点30分，大巴从学校出发。期待了好长时间的云栖2050总算是不远了。我坐在车上，激动地望向车外，努力的想象云栖小镇的样子，激动地把安全带拔开又系上，系上又拔开。<br>不到1个小时的车程，我们就到达了目的地。大朵大朵的灰云含着雨，铺满天空，阳光依旧从间隙中撒下。我在柜台拿到了自己的【参会者通行证】，激动地跑过安检门。<br>我第一眼看到就2050的标志伫立在云栖小镇的前方。我激动地拉上队长的手，跑向了ACMer大赛的检录处，拿上了我们队每个人的参赛牌。赛场上空调打的很足，好像喷了些干冰，聚光灯前烟雾缭绕，深吸一口能感受到饱满的蒸馏的味道。左侧的柜台能领取2050ACMer的纪念服，我取来就直接套在身上。比赛还没有开始，我于是开始满赛场跑，在舞台下方偷看主持人，与食物补给处的管理员小哥拍合影，和后排的大佬打招呼，和记者同志聊天，找摄像师给我们队拍特显……一直持续到比赛开始，我都死活不肯消停。</p>
         
-          <!--<a class="article-more-a" href="/2018/05/26/云栖大会游记/#more">more >></a>
+          <!--<a class="article-more-a" href="/随笔/游记/云栖大会游记/#more">more >></a>
         -->
       
 
@@ -1653,17 +1656,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="fa fa-bookmark icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">游记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<!--<i class="icon-book icon"></i>-->
@@ -1672,6 +1664,10 @@
 			
         		<li class="article-tag-list-item">
         			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔/游记//" class="article-tag-list-link color3">游记</a>
         		</li>
       		
 		</ul>
@@ -1717,7 +1713,7 @@
     <div id="footer-info">
     	<div class="footer-left">
 			&copy; 2018 - 2020 markJuruo
-			| 这个蒟蒻一共写了 <span class="post-count">16.1k</span> 字，你数一数对不对
+			| 这个蒟蒻一共写了 <span class="post-count">16.9k</span> 字，你数一数对不对
 		</div>
 		<div class="footer-right">
 			<span id="sitetime"></span>
@@ -1778,7 +1774,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         processEscapes: true,
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     }
@@ -1848,35 +1844,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">游记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日志</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">雨天の美好</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">感想</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">旧事记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">论文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">图论</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">小记</a>
               </li>
              
               <li class="article-tag-list-item">
