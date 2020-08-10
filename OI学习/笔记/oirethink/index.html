@@ -9,24 +9,21 @@
   <title>思路整理 | markJuruo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Loading…
-动态规划专题最长公共子序列和它的朋友最初的问题：假设有A，B两个字符串，求它们的最长公共子序列
-假设 $f_{i,j}$ 表示 $A$ 串前 $i$ 个字符与 $B$ 串前 $j$ 个字符所拥有的的最长公共子序列（LCS）的长度
-$f_{i,j}=\begin{cases}max\{f_{i-1,j},f_{i,j-1}\} &amp;amp; {A_i \neq B_j} \\f_{i">
+动态规划专题最长升/降子序列模板直接以P1439 【模板】最长公共子序列为例
+12345678910111213141516171819202122while(~scanf(&quot;%d&quot;,&amp;amp;a[++n]));n--;for(register int i=1;i&amp;lt;=n;i++)&amp;#123;    *upper_bound(dp,dp+n,a[i],greater&amp;lt;i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="思路整理">
 <meta property="og:url" content="http://juruo233.github.io/OI学习/笔记/oirethink/index.html">
 <meta property="og:site_name" content="markJuruo">
 <meta property="og:description" content="Loading…
-动态规划专题最长公共子序列和它的朋友最初的问题：假设有A，B两个字符串，求它们的最长公共子序列
-假设 $f_{i,j}$ 表示 $A$ 串前 $i$ 个字符与 $B$ 串前 $j$ 个字符所拥有的的最长公共子序列（LCS）的长度
-$f_{i,j}=\begin{cases}max\{f_{i-1,j},f_{i,j-1}\} &amp;amp; {A_i \neq B_j} \\f_{i">
-<meta property="og:updated_time" content="2020-08-09T12:52:25.939Z">
+动态规划专题最长升/降子序列模板直接以P1439 【模板】最长公共子序列为例
+12345678910111213141516171819202122while(~scanf(&quot;%d&quot;,&amp;amp;a[++n]));n--;for(register int i=1;i&amp;lt;=n;i++)&amp;#123;    *upper_bound(dp,dp+n,a[i],greater&amp;lt;i">
+<meta property="og:updated_time" content="2020-08-10T10:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="思路整理">
 <meta name="twitter:description" content="Loading…
-动态规划专题最长公共子序列和它的朋友最初的问题：假设有A，B两个字符串，求它们的最长公共子序列
-假设 $f_{i,j}$ 表示 $A$ 串前 $i$ 个字符与 $B$ 串前 $j$ 个字符所拥有的的最长公共子序列（LCS）的长度
-$f_{i,j}=\begin{cases}max\{f_{i-1,j},f_{i,j-1}\} &amp;amp; {A_i \neq B_j} \\f_{i">
+动态规划专题最长升/降子序列模板直接以P1439 【模板】最长公共子序列为例
+12345678910111213141516171819202122while(~scanf(&quot;%d&quot;,&amp;amp;a[++n]));n--;for(register int i=1;i&amp;lt;=n;i++)&amp;#123;    *upper_bound(dp,dp+n,a[i],greater&amp;lt;i">
   
     <link rel="alternative" href="/atom.xml" title="markJuruo" type="application/atom+xml">
   
@@ -186,7 +183,7 @@ $f_{i,j}=\begin{cases}max\{f_{i-1,j},f_{i,j-1}\} &amp;amp; {A_i \neq B_j} \\f_{i
       <span class="post-meta-item-icon">
         <i class="fa fa-pencil" aria-hidden="true"></i>
         <span class="post-meta-item-text">  本文一共</span>
-        <span class="post-count">816字，你数一下对不对</span>
+        <span class="post-count">1.1k字，你数一下对不对</span>
       </span>
     </span>
 </div>
@@ -197,9 +194,17 @@ $f_{i,j}=\begin{cases}max\{f_{i-1,j},f_{i,j-1}\} &amp;amp; {A_i \neq B_j} \\f_{i
     <div class="article-entry" itemprop="articleBody">
       
         <p><i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading…</span></p>
-<h1 id="动态规划专题"><a href="#动态规划专题" class="headerlink" title="动态规划专题"></a>动态规划专题</h1><h2 id="最长公共子序列和它的朋友"><a href="#最长公共子序列和它的朋友" class="headerlink" title="最长公共子序列和它的朋友"></a>最长公共子序列和它的朋友</h2><p>最初的问题：假设有A，B两个字符串，求它们的最长公共子序列</p>
+<h1 id="动态规划专题"><a href="#动态规划专题" class="headerlink" title="动态规划专题"></a>动态规划专题</h1><h2 id="最长升-降子序列模板"><a href="#最长升-降子序列模板" class="headerlink" title="最长升/降子序列模板"></a>最长升/降子序列模板</h2><p>直接以<a href="https://www.luogu.com.cn/problem/P1439" target="_blank" rel="external">P1439 【模板】最长公共子序列</a>为例</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[++n]));</div><div class="line">n--;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">    *upper_bound(dp,dp+n,a[i],greater&lt;<span class="keyword">int</span>&gt;())=a[i];</div><div class="line">&#125;</div><div class="line"><span class="keyword">int</span> ans=<span class="number">0</span>;</div><div class="line"><span class="keyword">while</span>(dp[ans++]);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,--ans);</div><div class="line"></div><div class="line"><span class="comment">// 以上为求最长不下降子序列长度</span></div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++)&#123;</div><div class="line">    dp[i]=INF;</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">    *lower_bound(dp,dp+n,a[i])=a[i];</div><div class="line">&#125;</div><div class="line">ans=<span class="number">0</span>;</div><div class="line"><span class="keyword">while</span>(dp[ans++]!=INF);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d"</span>,--ans);</div><div class="line"></div><div class="line"><span class="comment">// 以上为求最长上升子序列</span></div></pre></td></tr></table></figure>
+<p>但是一定要记清楚了：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">lower_bound() 求最长上升子序列</div><div class="line">upper_bound() 求最长上升子序列（可取等于）</div><div class="line">lower_bound(greater&lt;<span class="keyword">int</span>&gt;()) 求最长下降子序列</div><div class="line">upper_bound(greater&lt;<span class="keyword">int</span>&gt;()) 求最长下降子序列（可取等于）</div></pre></td></tr></table></figure></p>
+<p>总结一句话：</p>
+<blockquote>
+<p>greater下降反着来，upper登峰可取等<br><strong>有无greater定升降，是否upper定等于</strong></p>
+</blockquote>
+<h2 id="最长公共子序列和它的朋友"><a href="#最长公共子序列和它的朋友" class="headerlink" title="最长公共子序列和它的朋友"></a>最长公共子序列和它的朋友</h2><p>最初的问题：假设有A，B两个字符串，求它们的最长公共子序列</p>
 <p>假设 $f_{i,j}$ 表示 $A$ 串前 $i$ 个字符与 $B$ 串前 $j$ 个字符所拥有的的最长公共子序列（LCS）的长度</p>
 <p>$f_{i,j}=<br>\begin{cases}<br>max\{f_{i-1,j},f_{i,j-1}\} &amp; {A_i \neq B_j} \\<br>f_{i-1,j-1}+1 &amp; {A_i = B_j}<br>\end{cases}$</p>
+<a id="more"></a>
 <p>如果当前比较的 $A_i$ $B_j$ 这两个字符不相同，<br>那么即使少掉 $A_i$ 或者 $B_j$ 这两位，也不会影响 $A$ 的前 $i$ 位与 $B$ 的前 $j$ 位的 LCS 长度，故可以得到大括号上方的式子；<br>反之，如果相同，则 $A$ 的前 $i$ 位与 $B$ 的前 $j$ 位的 LCS 长度刚好是 $A$ $B$ 两字符串分别去掉 $A_i$ 和 $B_i$ 这两位后的两个字符串的 LCS 长度加一。</p>
 <p>为什么这么想？因为动态规划的很重要的一点就是找出<strong>当前状态与前一步状态之间的联系</strong>。</p>
 <h3 id="拓展-输出最优方案？"><a href="#拓展-输出最优方案？" class="headerlink" title="拓展 输出最优方案？"></a>拓展 输出最优方案？</h3><p>在动态规划中，输出方案事实上有两种思路（来自于<a href="https://zhuanlan.zhihu.com/p/139368825" target="_blank" rel="external">背包九讲</a>）</p>
@@ -216,6 +221,9 @@ $f_{i,j}=\begin{cases}max\{f_{i-1,j},f_{i,j-1}\} &amp;amp; {A_i \neq B_j} \\f_{i
 <h3 id="最长回文子序列"><a href="#最长回文子序列" class="headerlink" title="最长回文子序列"></a>最长回文子序列</h3><p>求一个字符串 $A$ 的最长回文子序列？</p>
 <p>不细写了，思路很清晰了：</p>
 <p>将 $A$ 倒序存储到数组 $B$ 中<br>然后求 $A$ 和 $B$ 的最长公共子序列即可。</p>
+<h2 id="动规的小伙伴-记忆化搜索"><a href="#动规的小伙伴-记忆化搜索" class="headerlink" title="动规的小伙伴 记忆化搜索"></a>动规的小伙伴 记忆化搜索</h2><p>为什么可以记忆化搜索？<br>什么题可以记忆化搜索？</p>
+<p>记搜绝不仅仅是</p>
+<h2 id="状态转移方程相关"><a href="#状态转移方程相关" class="headerlink" title="状态转移方程相关"></a>状态转移方程相关</h2><p>这是动态的核心的核心的核心的核心</p>
 
       
 
@@ -350,7 +358,7 @@ $f_{i,j}=\begin{cases}max\{f_{i-1,j},f_{i,j-1}\} &amp;amp; {A_i \neq B_j} \\f_{i
     <div id="footer-info">
     	<div class="footer-left">
 			&copy; 2018 - 2020 markJuruo
-			| 这个蒟蒻一共写了 <span class="post-count">16.9k</span> 字，你数一数对不对
+			| 这个蒟蒻一共写了 <span class="post-count">17.2k</span> 字，你数一数对不对
 		</div>
 		<div class="footer-right">
 			<span id="sitetime"></span>
