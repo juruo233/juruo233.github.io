@@ -178,7 +178,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-pencil" aria-hidden="true"></i>
         <span class="post-meta-item-text">  本文一共</span>
-        <span class="post-count">1.1k字，你数一下对不对</span>
+        <span class="post-count">1.4k字，你数一下对不对</span>
       </span>
     </span>
 </div>
@@ -191,14 +191,6 @@
         <p><i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading…</span></p>
 <h1 id="动态规划专题"><a href="#动态规划专题" class="headerlink" title="动态规划专题"></a>动态规划专题</h1><h2 id="最长升-降子序列模板"><a href="#最长升-降子序列模板" class="headerlink" title="最长升/降子序列模板"></a>最长升/降子序列模板</h2><p>直接以<a href="https://www.luogu.com.cn/problem/P1439">P1439 【模板】最长公共子序列</a>为例</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[++n]));</div><div class="line">n--;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">    *upper_bound(dp,dp+n,a[i],greater&lt;<span class="keyword">int</span>&gt;())=a[i];</div><div class="line">&#125;</div><div class="line"><span class="keyword">int</span> ans=<span class="number">0</span>;</div><div class="line"><span class="keyword">while</span>(dp[ans++]);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,--ans);</div><div class="line"></div><div class="line"><span class="comment">// 以上为求最长不下降子序列长度</span></div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++)&#123;</div><div class="line">    dp[i]=INF;</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">    *lower_bound(dp,dp+n,a[i])=a[i];</div><div class="line">&#125;</div><div class="line">ans=<span class="number">0</span>;</div><div class="line"><span class="keyword">while</span>(dp[ans++]!=INF);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d"</span>,--ans);</div><div class="line"></div><div class="line"><span class="comment">// 以上为求最长上升子序列</span></div></pre></td></tr></table></figure>
-<p>但是一定要记清楚了：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">lower_bound() 求最长上升子序列</div><div class="line">upper_bound() 求最长上升子序列（可取等于）</div><div class="line">lower_bound(greater&lt;<span class="keyword">int</span>&gt;()) 求最长下降子序列</div><div class="line">upper_bound(greater&lt;<span class="keyword">int</span>&gt;()) 求最长下降子序列（可取等于）</div></pre></td></tr></table></figure></p>
-<p>总结一句话：</p>
-<blockquote>
-<p>greater下降反着来，upper登峰可取等<br><strong>有无greater定升降，是否upper定等于</strong></p>
-</blockquote>
-<h2 id="最长公共子序列和它的朋友"><a href="#最长公共子序列和它的朋友" class="headerlink" title="最长公共子序列和它的朋友"></a>最长公共子序列和它的朋友</h2><p>最初的问题：假设有A，B两个字符串，求它们的最长公共子序列</p>
-<p>假设 $f_{i,j}$ 表示 $A$ 串前 $i$ 个字符与 $B$ 串前 $j$ 个字符所拥有的的最长公共子序列（LCS）的长度</p>
-<p>$f_{i,j}=<br>\begin{cases}<br>max\{f_{i-1,j},f_{i,j-1}\} &amp; {A_i \neq B_j} \\<br>f_{i-1,j-1}+1 &amp; {A_i = B_j}<br>\end{cases}$</p>
         
           <!--<a class="article-more-a" href="/OI学习/笔记/oirethink/#more">more >></a>
         -->
@@ -1706,7 +1698,7 @@
     <div id="footer-info">
     	<div class="footer-left">
 			&copy; 2018 - 2020 markJuruo
-			| 这个蒟蒻一共写了 <span class="post-count">17.2k</span> 字，你数一数对不对
+			| 这个蒟蒻一共写了 <span class="post-count">17.4k</span> 字，你数一数对不对
 		</div>
 		<div class="footer-right">
 			<span id="sitetime"></span>
@@ -1841,11 +1833,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图论</a>
+                <a href="javascript:void(0)" class="js-tag color3">中二</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">中二</a>
+                <a href="javascript:void(0)" class="js-tag color3">图论</a>
               </li>
             
             <div class="clearfix"></div>
