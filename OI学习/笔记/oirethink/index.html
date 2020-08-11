@@ -9,21 +9,21 @@
   <title>思路整理 | markJuruo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Loading…
-动态规划专题最长升/降子序列模板直接以P1439 【模板】最长公共子序列为例
-12345678910111213141516171819202122while(~scanf(&quot;%d&quot;,&amp;amp;a[++n]));n--;for(register int i=1;i&amp;lt;=n;i++)&amp;#123;    *upper_bound(dp,dp+n,a[i],greater&amp;lt;i">
+动态规划专题最长升/降子序列模板直接以P1020 导弹拦截为例
+12345678910111213141516171819202122while(~scanf(&quot;%d&quot;,&amp;amp;a[++n]));n--;for(register int i=1;i&amp;lt;=n;i++)&amp;#123;    *upper_bound(dp,dp+n,a[i],greater&amp;lt;int&amp;gt;(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="思路整理">
 <meta property="og:url" content="http://juruo233.github.io/OI学习/笔记/oirethink/index.html">
 <meta property="og:site_name" content="markJuruo">
 <meta property="og:description" content="Loading…
-动态规划专题最长升/降子序列模板直接以P1439 【模板】最长公共子序列为例
-12345678910111213141516171819202122while(~scanf(&quot;%d&quot;,&amp;amp;a[++n]));n--;for(register int i=1;i&amp;lt;=n;i++)&amp;#123;    *upper_bound(dp,dp+n,a[i],greater&amp;lt;i">
-<meta property="og:updated_time" content="2020-08-10T12:31:14.000Z">
+动态规划专题最长升/降子序列模板直接以P1020 导弹拦截为例
+12345678910111213141516171819202122while(~scanf(&quot;%d&quot;,&amp;amp;a[++n]));n--;for(register int i=1;i&amp;lt;=n;i++)&amp;#123;    *upper_bound(dp,dp+n,a[i],greater&amp;lt;int&amp;gt;(">
+<meta property="og:updated_time" content="2020-08-11T05:31:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="思路整理">
 <meta name="twitter:description" content="Loading…
-动态规划专题最长升/降子序列模板直接以P1439 【模板】最长公共子序列为例
-12345678910111213141516171819202122while(~scanf(&quot;%d&quot;,&amp;amp;a[++n]));n--;for(register int i=1;i&amp;lt;=n;i++)&amp;#123;    *upper_bound(dp,dp+n,a[i],greater&amp;lt;i">
+动态规划专题最长升/降子序列模板直接以P1020 导弹拦截为例
+12345678910111213141516171819202122while(~scanf(&quot;%d&quot;,&amp;amp;a[++n]));n--;for(register int i=1;i&amp;lt;=n;i++)&amp;#123;    *upper_bound(dp,dp+n,a[i],greater&amp;lt;int&amp;gt;(">
   
     <link rel="alternative" href="/atom.xml" title="markJuruo" type="application/atom+xml">
   
@@ -183,7 +183,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-pencil" aria-hidden="true"></i>
         <span class="post-meta-item-text">  本文一共</span>
-        <span class="post-count">1.4k字，你数一下对不对</span>
+        <span class="post-count">1.8k字，你数一下对不对</span>
       </span>
     </span>
 </div>
@@ -194,7 +194,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading…</span></p>
-<h1 id="动态规划专题"><a href="#动态规划专题" class="headerlink" title="动态规划专题"></a>动态规划专题</h1><h2 id="最长升-降子序列模板"><a href="#最长升-降子序列模板" class="headerlink" title="最长升/降子序列模板"></a>最长升/降子序列模板</h2><p>直接以<a href="https://www.luogu.com.cn/problem/P1439" target="_blank" rel="external">P1439 【模板】最长公共子序列</a>为例</p>
+<h1 id="动态规划专题"><a href="#动态规划专题" class="headerlink" title="动态规划专题"></a>动态规划专题</h1><h2 id="最长升-降子序列模板"><a href="#最长升-降子序列模板" class="headerlink" title="最长升/降子序列模板"></a>最长升/降子序列模板</h2><p>直接以<a href="https://www.luogu.com.cn/problem/P1020" target="_blank" rel="external">P1020 导弹拦截</a>为例</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[++n]));</div><div class="line">n--;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">    *upper_bound(dp,dp+n,a[i],greater&lt;<span class="keyword">int</span>&gt;())=a[i];</div><div class="line">&#125;</div><div class="line"><span class="keyword">int</span> ans=<span class="number">0</span>;</div><div class="line"><span class="keyword">while</span>(dp[ans++]);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,--ans);</div><div class="line"></div><div class="line"><span class="comment">// 以上为求最长不下降子序列长度</span></div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++)&#123;</div><div class="line">    dp[i]=INF;</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">    *lower_bound(dp,dp+n,a[i])=a[i];</div><div class="line">&#125;</div><div class="line">ans=<span class="number">0</span>;</div><div class="line"><span class="keyword">while</span>(dp[ans++]!=INF);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d"</span>,--ans);</div><div class="line"></div><div class="line"><span class="comment">// 以上为求最长上升子序列</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>但是一定要记清楚了：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">lower_bound() <span class="comment">// 求最长上升子序列</span></div><div class="line">upper_bound() <span class="comment">// 求最长上升子序列（可取等于）</span></div><div class="line">lower_bound(greater&lt;<span class="keyword">int</span>&gt;()) <span class="comment">// 求最长下降子序列</span></div><div class="line">upper_bound(greater&lt;<span class="keyword">int</span>&gt;()) <span class="comment">// 求最长下降子序列（可取等于）</span></div></pre></td></tr></table></figure></p>
@@ -225,6 +225,10 @@
 <h2 id="动规的小伙伴-记忆化搜索"><a href="#动规的小伙伴-记忆化搜索" class="headerlink" title="动规的小伙伴 记忆化搜索"></a>动规的小伙伴 记忆化搜索</h2><p>为什么可以记忆化搜索？<br>什么题可以记忆化搜索？</p>
 <p>记搜绝不仅仅是“用个数组存一下”这么简单的东西。</p>
 <p>记搜的原理是：<br>对于一个深度优先搜索函数 <code>DFS(int var1,int var2 ...)</code><br>如果对于相同的 <code>var1,var2 ...</code> ，<code>DFS(..)</code> 都有相同的返回值，<br>那么通过数组，以参数作为下标，记录该参数对应的函数返回值，可以在减少那些反复搜索到的状态（每组参数对应的就是一种状态）。</p>
+<blockquote>
+<p>来自于<a href="https://oi-wiki.org/dp/memo/" target="_blank" rel="external">OI-wiki</a>的总结</p>
+<p>记忆化搜索是啥：<br>不依赖任何 <strong>外部变量</strong><br>答案以返回值的形式存在，而不能以参数的形式存在（就是不能将 dfs 定义成 <code>dfs(pos,left,nowans)</code> , 这里面的 nowans 不符合要求）。<br>对于相同一组参数，dfs 返回值总是相同的</p>
+</blockquote>
 <div class="table-container">
 <table>
 <thead>
@@ -250,9 +254,20 @@
 </table>
 </div>
 <p>举个例子</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 记忆化搜索</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(i&lt;=<span class="number">2</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(f[i]!=<span class="number">-1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> f[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(f[i<span class="number">-1</span>]==<span class="number">-1</span>)&#123;</div><div class="line">        f[i<span class="number">-1</span>]=Fibonacci(i<span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(f[i<span class="number">-2</span>]==<span class="number">-1</span>)&#123;</div><div class="line">        f[i<span class="number">-2</span>]=Fibonacci(i<span class="number">-2</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> f[i<span class="number">-1</span>]+f[i<span class="number">-2</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 动态规划</span></div><div class="line">f[<span class="number">1</span>]=f[<span class="number">2</span>]=<span class="number">1</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">3</span>;i&lt;=n;i++)&#123;</div><div class="line">    f[i]=f[i<span class="number">-1</span>]+f[i<span class="number">-2</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>以上这个例子尤其的显然</p>
-<h2 id="状态转移方程相关"><a href="#状态转移方程相关" class="headerlink" title="状态转移方程相关"></a>状态转移方程相关</h2><p>这是动态的核心的核心的核心的核心</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 记忆化搜索</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(i&lt;=<span class="number">2</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(f[i]!=<span class="number">-1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> f[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(f[i<span class="number">-1</span>]==<span class="number">-1</span>)&#123;</div><div class="line">        f[i<span class="number">-1</span>]=Fibonacci(i<span class="number">-1</span>);z</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(f[i<span class="number">-2</span>]==<span class="number">-1</span>)&#123;</div><div class="line">        f[i<span class="number">-2</span>]=Fibonacci(i<span class="number">-2</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> f[i<span class="number">-1</span>]+f[i<span class="number">-2</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 动态规划</span></div><div class="line">f[<span class="number">1</span>]=f[<span class="number">2</span>]=<span class="number">1</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">3</span>;i&lt;=n;i++)&#123;</div><div class="line">    f[i]=f[i<span class="number">-1</span>]+f[i<span class="number">-2</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上这个例子尤其的显然。</p>
+<p>在一些情况中，记忆化搜索会比动态规划在思路上简单易懂很多：</p>
+<p>以 <a href="https://www.luogu.com.cn/problem/P3183" target="_blank" rel="external">P3183 [HAOI2016]食物链</a> 为例</p>
+<p>记忆化搜索时可以很轻松的从食物链顶端开始搜索，到食物链端点开始回溯并统计数量，对于一些计算过的分支进行记录。</p>
+<p>但是动态规划呢？在这道题目中状态转移方程比较难建立，就不用强求自己。</p>
+<blockquote>
+<p>来自<a href="https://oi-wiki.org/dp/memo/#_7" target="_blank" rel="external">OI-wiki</a>的模板</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> g[MAXN];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(传入数值)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (g[规模] != 无效数值) <span class="keyword">return</span> g[规模];</div><div class="line">  <span class="keyword">if</span> (终止条件) <span class="keyword">return</span> 最小子问题解;</div><div class="line">  g[规模] = f(缩小规模);</div><div class="line">  <span class="keyword">return</span> g[规模];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  ... <span class="built_in">memset</span>(g, 无效数值, <span class="keyword">sizeof</span>(g));</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="状态转移方程-动归核心代码相关"><a href="#状态转移方程-动归核心代码相关" class="headerlink" title="状态转移方程 / 动归核心代码相关"></a>状态转移方程 / 动归核心代码相关</h2><p>这是动态的核心的核心的核心的核心</p>
+<h3 id="在01背包和多重背包中的循环次序的问题"><a href="#在01背包和多重背包中的循环次序的问题" class="headerlink" title="在01背包和多重背包中的循环次序的问题"></a>在01背包和多重背包中的循环次序的问题</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 在背包问题中之后习惯用:</span></div><div class="line"><span class="comment">// c[i] 表示 cost ，v[i] 表示 value</span></div><div class="line"></div><div class="line"><span class="keyword">for</span>(i = <span class="number">1</span> to n)&#123;</div><div class="line">    <span class="keyword">for</span>(l = <span class="number">1</span> to v-c[i])&#123;</div><div class="line">        f[l]=max(f[l],f[l-c[i]]+v[i])</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span>(i = <span class="number">1</span> to n)&#123;</div><div class="line">    <span class="keyword">for</span>(l = v to c[i])&#123;</div><div class="line">        f[l]=max(f[l],f[l-c[i]]+v[i]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如图两个伪代码，上方为完全背包，下方为01背包。<br>区别就在于循环次序不同。<br>这是什么原理？</p>
+<p>内层循环每完成一次，f[]数组就会被更新。<br>那么在新一次循环的时候，f[]数组实际上用的是上一次运算的到结果。</p>
 
       
 
@@ -387,7 +402,7 @@
     <div id="footer-info">
     	<div class="footer-left">
 			&copy; 2018 - 2020 markJuruo
-			| 这个蒟蒻一共写了 <span class="post-count">17.4k</span> 字，你数一数对不对
+			| 这个蒟蒻一共写了 <span class="post-count">17.9k</span> 字，你数一数对不对
 		</div>
 		<div class="footer-right">
 			<span id="sitetime"></span>
@@ -522,11 +537,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">中二</a>
+                <a href="javascript:void(0)" class="js-tag color3">图论</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图论</a>
+                <a href="javascript:void(0)" class="js-tag color3">中二</a>
               </li>
             
             <div class="clearfix"></div>
