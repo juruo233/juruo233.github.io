@@ -18,7 +18,7 @@
 <meta property="og:description" content="Loading…
 动态规划专题最长升/降子序列模板直接以P1020 导弹拦截为例
 12345678910111213141516171819202122while(~scanf(&quot;%d&quot;,&amp;amp;a[++n]));n--;for(register int i=1;i&amp;lt;=n;i++)&amp;#123;    *upper_bound(dp,dp+n,a[i],greater&amp;lt;int&amp;gt;(">
-<meta property="og:updated_time" content="2020-08-11T05:31:16.000Z">
+<meta property="og:updated_time" content="2020-08-11T12:43:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="思路整理">
 <meta name="twitter:description" content="Loading…
@@ -183,7 +183,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-pencil" aria-hidden="true"></i>
         <span class="post-meta-item-text">  本文一共</span>
-        <span class="post-count">1.8k字，你数一下对不对</span>
+        <span class="post-count">2.3k字，你数一下对不对</span>
       </span>
     </span>
 </div>
@@ -265,9 +265,22 @@
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> g[MAXN];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(传入数值)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (g[规模] != 无效数值) <span class="keyword">return</span> g[规模];</div><div class="line">  <span class="keyword">if</span> (终止条件) <span class="keyword">return</span> 最小子问题解;</div><div class="line">  g[规模] = f(缩小规模);</div><div class="line">  <span class="keyword">return</span> g[规模];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  ... <span class="built_in">memset</span>(g, 无效数值, <span class="keyword">sizeof</span>(g));</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="状态转移方程-动归核心代码相关"><a href="#状态转移方程-动归核心代码相关" class="headerlink" title="状态转移方程 / 动归核心代码相关"></a>状态转移方程 / 动归核心代码相关</h2><p>这是动态的核心的核心的核心的核心</p>
-<h3 id="在01背包和多重背包中的循环次序的问题"><a href="#在01背包和多重背包中的循环次序的问题" class="headerlink" title="在01背包和多重背包中的循环次序的问题"></a>在01背包和多重背包中的循环次序的问题</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 在背包问题中之后习惯用:</span></div><div class="line"><span class="comment">// c[i] 表示 cost ，v[i] 表示 value</span></div><div class="line"></div><div class="line"><span class="keyword">for</span>(i = <span class="number">1</span> to n)&#123;</div><div class="line">    <span class="keyword">for</span>(l = <span class="number">1</span> to v-c[i])&#123;</div><div class="line">        f[l]=max(f[l],f[l-c[i]]+v[i])</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span>(i = <span class="number">1</span> to n)&#123;</div><div class="line">    <span class="keyword">for</span>(l = v to c[i])&#123;</div><div class="line">        f[l]=max(f[l],f[l-c[i]]+v[i]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="在01背包完全背包中的循环次序的问题"><a href="#在01背包完全背包中的循环次序的问题" class="headerlink" title="在01背包完全背包中的循环次序的问题"></a>在01背包完全背包中的循环次序的问题</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 在背包问题中之后习惯用:</span></div><div class="line"><span class="comment">// c[i] 表示 cost ，v[i] 表示 value</span></div><div class="line"></div><div class="line"><span class="keyword">for</span>(i = <span class="number">1</span> to n)&#123;</div><div class="line">    <span class="keyword">for</span>(l = <span class="number">1</span> to v-c[i])&#123;</div><div class="line">        f[l]=max(f[l],f[l-c[i]]+v[i])</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span>(i = <span class="number">1</span> to n)&#123;</div><div class="line">    <span class="keyword">for</span>(l = v to c[i])&#123;</div><div class="line">        f[l]=max(f[l],f[l-c[i]]+v[i]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>如图两个伪代码，上方为完全背包，下方为01背包。<br>区别就在于循环次序不同。<br>这是什么原理？</p>
-<p>内层循环每完成一次，f[]数组就会被更新。<br>那么在新一次循环的时候，f[]数组实际上用的是上一次运算的到结果。</p>
+<p>内层循环每完成一次，f[]数组就会被更新。<br>那么在新一次循环的时候，如果是倒序，那么f[]数组实际上用的全部是是上一次运算的到结果。<br>这样可以很好的保证每个物品至多只放过一次，因为总共只有一次选择的机会。</p>
+<p>如果内循环为顺序循环，那么我后面所用到的数据是建立在前面计算结果的基础之上的，我无法保证前面计算过程中没有把这个物品放进去过。<br>01背包需要保证这个物品在做出当前选择的时候，前面并没有放过这个物品。完全背包不需要这个保证。因此正序和倒序恰好可以分别满完全背包、01背包的需求。</p>
+<h3 id="区间-DP-的转移方程模板"><a href="#区间-DP-的转移方程模板" class="headerlink" title="区间 DP 的转移方程模板"></a>区间 DP 的转移方程模板</h3><p><strong>区间 DP 的核心转移方程：</strong></p>
+<script type="math/tex; mode=display">f(i,j) = max\{ f(i,k)+f(k+1,j)+cost z\} , k \in [ i , j)</script><p><strong>链式的区间 DP 模板：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(len = <span class="number">1</span> to n)&#123; <span class="comment">// 枚举区间长度</span></div><div class="line">    <span class="keyword">for</span>(i = <span class="number">1</span> to n)&#123; <span class="comment">// 枚举起点</span></div><div class="line">        j = i+len<span class="number">-1</span>;</div><div class="line">        <span class="keyword">for</span>(k = i to j<span class="number">-1</span>)&#123;</div><div class="line">            f[i][j] = max(f[i][j], f[i][k]+f[k+<span class="number">1</span>][j]+cost[i][j]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意外层循环为<strong>枚举区间长度</strong>，<br>原因很显然：要计算较长区间长度的dp值，需要有较短区间长度的dp值为基础。<br>后一步的状态是由前一步的状态转移而来的，故应当先计算较短区间的长度。</p>
+<p><strong>对于环的处理</strong></p>
+<p>此处对于环的处理的思路可以推广到许多题中：</p>
+<p>通过复制链，将两个（有需要的话可以多个）相同的链首位相连，这样在循环的时候可以达到枚举环上区间的效果。</p>
+<p>以 <a href="https://www.luogu.com.cn/problem/P1880" target="_blank" rel="external">P1880 石子合并</a> 为例：</p>
+<blockquote>
+<p>来自于 OI-wiki 的解析</p>
+<p>我们将这条链延长两倍，变成 $2n$ 堆，其中第 $i$ 堆与第 $n+i$ 堆相同，用动态规划求解后，取 $f(1,n),f(2,n+1),…f(i,i+-1)$ 中的最优值，即为最后的答案。时间复杂度  。</p>
+</blockquote>
 
       
 
@@ -402,7 +415,7 @@
     <div id="footer-info">
     	<div class="footer-left">
 			&copy; 2018 - 2020 markJuruo
-			| 这个蒟蒻一共写了 <span class="post-count">17.9k</span> 字，你数一数对不对
+			| 这个蒟蒻一共写了 <span class="post-count">18.4k</span> 字，你数一数对不对
 		</div>
 		<div class="footer-right">
 			<span id="sitetime"></span>
