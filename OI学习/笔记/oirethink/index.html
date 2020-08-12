@@ -18,7 +18,7 @@
 <meta property="og:description" content="Loading…
 动态规划专题最长升/降子序列模板直接以P1020 导弹拦截为例
 12345678910111213141516171819202122while(~scanf(&quot;%d&quot;,&amp;amp;a[++n]));n--;for(register int i=1;i&amp;lt;=n;i++)&amp;#123;    *upper_bound(dp,dp+n,a[i],greater&amp;lt;int&amp;gt;(">
-<meta property="og:updated_time" content="2020-08-11T12:43:04.000Z">
+<meta property="og:updated_time" content="2020-08-12T02:26:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="思路整理">
 <meta name="twitter:description" content="Loading…
@@ -279,7 +279,7 @@
 <p>以 <a href="https://www.luogu.com.cn/problem/P1880" target="_blank" rel="external">P1880 石子合并</a> 为例：</p>
 <blockquote>
 <p>来自于 OI-wiki 的解析</p>
-<p>我们将这条链延长两倍，变成 $2n$ 堆，其中第 $i$ 堆与第 $n+i$ 堆相同，用动态规划求解后，取 $f(1,n),f(2,n+1),…f(i,i+-1)$ 中的最优值，即为最后的答案。时间复杂度  。</p>
+<p>我们将这条链延长两倍，变成 $2n$ 堆，其中第 $i$ 堆与第 $n+i$ 堆相同，用动态规划求解后，取 $f(1,n),f(2,n+1),…f(i,i+n-1)$ 中的最优值，即为最后的答案。</p>
 </blockquote>
 
       
